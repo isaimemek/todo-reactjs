@@ -1,6 +1,6 @@
 # About Project
 
-This is a ReactJS implementation of TodoMVC. CSS code belongs to original project's author Dmitry Sharabin.
+This is a ReactJS implementation of TodoMVC. CSS code belongs to original project's author.
 
 Purpose of creating this app is getting familliar with React comsepts.
 
