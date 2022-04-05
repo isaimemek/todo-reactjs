@@ -12,11 +12,15 @@ Fully functional with an additional feature.
 
 - If a completed task is modified it becames uncompleted.
 
+## Changes
+
+V1.1 - Implemented useContext.
+
 ## Plans for Future
 
 Needs code refactoring.
 
-- More useContext and useReducer implementation.
+- useReducer implementation.
 
 ## How to Use
 

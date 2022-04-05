@@ -1,8 +1,10 @@
 import { AddToList } from "../manageList";
-import { useState } from "react";
+import { useState, useContext } from "react";
+import { TodosContext } from "../../components";
 import "./Header.css";
 
-function Header({ todos, setTodos }) {
+function Header() {
+  const { todos, setTodos } = useContext(TodosContext);
   const [isChecked, setIsChecked] = useState(false);
 
   const toggleAll = (isChecked) => {

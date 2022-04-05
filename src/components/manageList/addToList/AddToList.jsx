@@ -1,10 +1,12 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { v4 as uuidv4 } from "uuid";
+import { TodosContext } from "../../../components";
 import "./AddToList.css";
 
 const newThing = { id: 0, thingToDo: "", completed: false };
 
-function AddToList({ addTodo, todos }) {
+function AddToList() {
+  const { todos, setTodos } = useContext(TodosContext);
   const [currentText, setCurrentText] = useState(newThing);
 
   const onChangeInput = (e) => {
@@ -18,7 +20,7 @@ function AddToList({ addTodo, todos }) {
       return false;
     }
     currentText.id = uuidv4();
-    addTodo([...todos, currentText]);
+    setTodos([...todos, currentText]);
     setCurrentText(newThing);
   };
 

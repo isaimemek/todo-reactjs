@@ -1,11 +1,18 @@
 import { useContext, useState } from "react";
-import { selectedContext } from "../../declareExport/Context";
+import { SelectionContext, TodosContext } from "../../../components";
+import { RemoveFromList } from "../../manageList";
 import "./FilterAndEdit.css";
 
-function FilterAndEdit({ todos, checkTodo, destroyTodo, setTodos }) {
-  const filterSelected = useContext(selectedContext);
+function FilterAndEdit({ checkTodo }) {
+  const { todos, setTodos } = useContext(TodosContext);
+  const { isSelected } = useContext(SelectionContext);
+
   const [clickedId, setClickedId] = useState(false);
   const [currentText, setCurrentText] = useState("");
+
+  const handleDestroy = (id) => {
+    RemoveFromList(id, todos, setTodos);
+  };
 
   const editInProgress = (id) => {
     setClickedId((state) => ({
@@ -28,7 +35,7 @@ function FilterAndEdit({ todos, checkTodo, destroyTodo, setTodos }) {
       editInProgress(id);
       setTodos(editedTodo);
     } else {
-      destroyTodo(id);
+      handleDestroy(id);
     }
   };
 
@@ -40,9 +47,9 @@ function FilterAndEdit({ todos, checkTodo, destroyTodo, setTodos }) {
 
   var filteredTodos = todos.filter(function (todo) {
     switch (true) {
-      case filterSelected === "active":
+      case isSelected === "active":
         return !todo.completed;
-      case filterSelected === "completed":
+      case isSelected === "completed":
         return todo.completed;
       default:
         return true;
@@ -70,7 +77,7 @@ function FilterAndEdit({ todos, checkTodo, destroyTodo, setTodos }) {
               {item.thingToDo}
             </label>
             <button
-              onClick={() => destroyTodo(item.id)}
+              onClick={() => handleDestroy(item.id)}
               className="destroy"
             ></button>
           </div>

@@ -1,7 +1,11 @@
+import { useContext } from "react";
 import { FilterAndEdit } from "../manageList";
+import { TodosContext } from "../../components";
 import "./Body.css";
 
-function Body({ todos, setTodos, destroyTodo }) {
+function Body() {
+  const { todos, setTodos } = useContext(TodosContext);
+
   const checkTodo = (id) => {
     let toggleTodo = todos?.map((todo) => {
       if (todo.id === id) {
@@ -14,12 +18,7 @@ function Body({ todos, setTodos, destroyTodo }) {
 
   return (
     <section className="main">
-      <FilterAndEdit
-        setTodos={setTodos}
-        todos={todos}
-        checkTodo={checkTodo}
-        destroyTodo={destroyTodo}
-      />
+      <FilterAndEdit setTodos={setTodos} todos={todos} checkTodo={checkTodo} />
     </section>
   );
 }
